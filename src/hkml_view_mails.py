@@ -205,6 +205,7 @@ def refresh_list(slist, show_tagged_replies=False):
     text = '\n'.join(lines)
     slist.set_lines(comment_lines + text.split('\n'))
     slist.focus_row = min(slist.focus_row, len(slist.lines) - 1)
+    slist.data.display_effects = {}
     slist.screen.clear()
 
 def collapse_focused_thread(c, slist):
