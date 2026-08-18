@@ -26,6 +26,7 @@ import hkml_manifest
 import hkml_cache
 import hkml_signature
 import hkml_config
+import hkml_version
 
 import _hkml
 
@@ -115,12 +116,15 @@ hkml_mail_note.set_argparser(parser_mail_note)
 parser_config = subparsers.add_parser('config', help='manage config')
 hkml_config.set_argparser(parser_config)
 
+parser_version = subparsers.add_parser('version', help='print version')
+hkml_version.set_argparser(parser_version)
+
 args = parser.parse_args()
 
 if args.directory is not None:
     os.chdir(args.directory)
 
-if not args.command in ['init', 'manifest']:
+if not args.command in ['init', 'manifest', 'version']:
     manifest = None
     if hasattr(args, 'manifest'):
         manifest = args.manifest
