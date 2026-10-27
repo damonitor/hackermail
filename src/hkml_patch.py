@@ -544,6 +544,9 @@ def write_patches(patches):
         text, err = patch.format_str()
         if err is not None:
             return None, err
+        # Without ending new line, 'git am' says "error: corrupt patch"
+        if not text.endswith('\n'):
+            text += '\n'
 
         with open(file_name, 'w') as f:
             f.write(text)
