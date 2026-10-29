@@ -17,12 +17,15 @@ import _hkml_date
 import hkml_cache
 import hkml_init
 
-def cmd_str_output(cmd):
+def cmd_str_output(cmd, do_strip=True):
     output = subprocess.check_output(cmd)
     try:
-        return output.decode('utf-8').strip()
+        output = output.decode('utf-8')
     except UnicodeDecodeError:
-        return output.decode('cp437').strip()
+        output = output.decode('cp437')
+    if do_strip is True:
+        output = output.strip()
+    return output
 
 def cmd_lines_output(cmd):
     return cmd_str_output(cmd).split('\n')
