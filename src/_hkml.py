@@ -239,7 +239,7 @@ class Mail:
                 gitdir = os.path.join(get_hkml_dir(), gitdir)
             cmd = ['git', '--git-dir=%s' % gitdir, 'show', '%s:m' % self.gitid]
             try:
-                self.mbox = cmd_str_output(cmd)
+                self.mbox = cmd_str_output(cmd, do_strip=False)
             except:
                 self.mbox = ''
             return
